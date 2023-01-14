@@ -1,0 +1,30 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="ensat.Actions" extends="struts-default">
+        
+        <action name="" class="ensat.Actions.ArticlesAction" method="Lister">
+            <result type="redirect">listerArticles</result>  
+        </action>
+        
+         <action name="listerArticles" class="ensat.Actions.ArticlesAction" method="Lister">
+            <result name="success">articles.jsp</result>      
+        </action>
+        
+        <action name="deleteArticle" class="ensat.Actions.ArticlesAction" method="Delete">
+            <result type="redirect">listerArticles</result>  
+        </action>
+        
+        <action name="ajouterArticle" class="ensat.Actions.ArticlesAction" method="Ajouter">
+            <result type="redirect">listerArticles</result>  
+        </action>
+        
+        <action name="updateArticle" class="ensat.Actions.ArticlesAction" method="Update">
+            <result type="redirect">listerArticles</result>  
+        </action>
+        
+    </package>
+</struts>
