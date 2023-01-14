@@ -15,9 +15,29 @@ public class FiliereService {
     private FiliereRepository filiereRepository;
     
     
-    public List<Filiere> getAll() 
+    public List<Filiere> getAllFilieres() 
     {
         return filiereRepository.getAll();
+    }
+    
+    public Filiere getFiliereById(String code_fil)
+    {
+        return filiereRepository.getById(code_fil);
+    }
+    
+    public void addFiliere(Filiere filiere)
+    {
+        filiereRepository.add(filiere);
+    }
+    
+    public void updataFiliere(Filiere filiere)
+    {
+        filiereRepository.update(filiere);
+    }
+    
+    public void deleteFiliereById(String code_fil)
+    {
+        filiereRepository.deleteById(code_fil);
     }
 
     public void setFiliereRepository(FiliereRepository filiereRepository) {

@@ -23,25 +23,11 @@ public class test {
 
     public static void main(String[] args) {
 
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EclipseLink_PU");
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-        // test creating new filiere:
-//        tx.begin();
-//        em.persist(new Filiere("GINF", "GENIE INFORMATIQUE"));
-//        tx.commit();
-        // Test creating new eleve
-//        tx.begin();
-//        em.persist
-//        (
-//                new Eleve("KB123566", "DKHISSI", "AYOUB", 20.0, new Filiere("GINF", "GENIE INFORMATIQUE"))
-//        );
-//        tx.commit();
         // test dependency injection
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         FiliereService filiereService = (FiliereService) context.getBean("filiereService");
         
-        List<Filiere> filieres = filiereService.getAll();
+        List<Filiere> filieres = filiereService.getAllFilieres();
         
         for(Filiere filiere: filieres)
         {
