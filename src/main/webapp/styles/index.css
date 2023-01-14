@@ -1,0 +1,72 @@
+/* 
+    Created on : Jan 14, 2023, 12:45:01 PM
+    Author     : Dkhissi Ayoub
+*/
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200;400&family=Roboto&display=swap');
+
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
+.home-page-section{
+    width: 100%;
+    height: 100vh;
+    background: url('../assets/img/ensat.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.circle {
+
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 2px solid white;
+}
+
+.circle:hover {
+    border-color: #8DCBE6;
+    border-width: 5px;
+}
+
+
+.home-page-title{
+    font-family: 'Bebas Neue';
+    font-size: 45px;
+    font-weight: 300;
+    margin-top: 10%;
+    margin-left: 22%;
+}
+.home-page-subtitle{
+    font-family: 'Bebas Neue';
+    font-size: 25px;
+    font-weight: 300;
+    margin-top: 5%;
+    margin-left: 2%;
+    color: white;
+    text-decoration: none;
+}
+
+.home-page-subtitle:hover {
+    text-decoration: none;
+    color: #8DCBE6;
+}
+.mycol{
+    margin-top: 5%;
+}
+.content{
+    margin-left: 20%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
