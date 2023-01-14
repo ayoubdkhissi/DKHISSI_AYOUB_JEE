@@ -25,5 +25,44 @@ public class Filiere {
     
     @OneToMany(mappedBy = "ref_fil", fetch = FetchType.LAZY)
     public Collection<Eleve> eleves;
+
+    public Filiere() {}
+    
+    public Filiere(String code_fil) {
+        this.code_fil = code_fil;
+    }
+
+    public Filiere(String code_fil, String nom_fil) {
+        this.code_fil = code_fil;
+        this.nom_fil = nom_fil;
+    }
+
+    public String getCode_fil() {
+        return code_fil;
+    }
+
+    public String getNom_fil() {
+        return nom_fil;
+    }
+
+    public Collection<Eleve> getEleves() {
+        return eleves;
+    }
+
+    public void setCode_fil(String code_fil) {
+        this.code_fil = code_fil;
+    }
+
+    public void setNom_fil(String nom_fil) {
+        this.nom_fil = nom_fil;
+    }
+
+    public void setEleves(Collection<Eleve> eleves) {
+        this.eleves = eleves;
+    }
+    
+    
+    
+    
     
 }

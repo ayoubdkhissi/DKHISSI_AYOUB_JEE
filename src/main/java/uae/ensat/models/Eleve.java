@@ -34,7 +34,62 @@ public class Eleve {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ref_fil", nullable = true)
     private Filiere ref_fil;
-    
-    
 
+    
+    public Eleve() {}
+
+    public Eleve(String cne) {
+        this.cne = cne;
+    }
+
+    public Eleve(String cne, String nom, String prenom, Double moyenne, Filiere ref_fil) {
+        this.cne = cne;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.moyenne = moyenne;
+        this.ref_fil = ref_fil;
+    }
+
+    public String getCne() {
+        return cne;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public Double getMoyenne() {
+        return moyenne;
+    }
+
+    public Filiere getRef_fil() {
+        return ref_fil;
+    }
+
+    public void setCne(String cne) {
+        this.cne = cne;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setMoyenne(Double moyenne) {
+        this.moyenne = moyenne;
+    }
+
+    public void setRef_fil(Filiere ref_fil) {
+        this.ref_fil = ref_fil;
+    }
+    
+    
+    
 }
