@@ -12,11 +12,20 @@
     <context:component-scan base-package="uae.ensat" />
 
     
-    <bean id="filiereRepository" class="uae.ensat.repository.FiliereRepository"/>
+    <bean id="filiereRepository" class="uae.ensat.repository.FiliereRepository"/> 
+    
+    <bean id="eleveRepository" class="uae.ensat.repository.EleveRepository"/>
     
     <bean id="filiereService" class="uae.ensat.services.FiliereService">
         <property name="filiereRepository" ref="filiereRepository" />
     </bean>
-
+    
+    <bean id="eleveService" class="uae.ensat.services.EleveService">
+        <property name="eleveRepository" ref="eleveRepository" />
+    </bean>
+    
+    <bean id="filiereAction" class="uae.ensat.actions.FiliereAction">
+        <property name="filiereService" ref="filiereService" />
+    </bean>
 
 </beans>

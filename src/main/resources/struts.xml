@@ -4,27 +4,13 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="ensat.Actions" extends="struts-default">
+    <package name="uae.ensat.actions" extends="struts-default">
         
-        <action name="" class="ensat.Actions.ArticlesAction" method="Lister">
-            <result type="redirect">listerArticles</result>  
+        
+        <action name="filieres" class="uae.ensat.actions.FiliereAction" method="Lister">
+            <result name="success">filieres.jsp</result>      
         </action>
         
-         <action name="listerArticles" class="ensat.Actions.ArticlesAction" method="Lister">
-            <result name="success">articles.jsp</result>      
-        </action>
-        
-        <action name="deleteArticle" class="ensat.Actions.ArticlesAction" method="Delete">
-            <result type="redirect">listerArticles</result>  
-        </action>
-        
-        <action name="ajouterArticle" class="ensat.Actions.ArticlesAction" method="Ajouter">
-            <result type="redirect">listerArticles</result>  
-        </action>
-        
-        <action name="updateArticle" class="ensat.Actions.ArticlesAction" method="Update">
-            <result type="redirect">listerArticles</result>  
-        </action>
         
     </package>
 </struts>

@@ -31,6 +31,8 @@
             <version>6.1.1</version>
         </dependency>
         
+        
+        
         <!--EclipseLink Dependencies-->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
@@ -104,9 +106,11 @@
         
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
+            <artifactId>spring-web</artifactId>
             <version>4.0.2.RELEASE</version>
         </dependency>
+       
+
 
         
     </dependencies>
