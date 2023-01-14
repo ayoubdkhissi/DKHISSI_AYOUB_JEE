@@ -8,7 +8,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200;400&family=Roboto&display=swap');
 
 body {
-  overflow: hidden; /* Hide scrollbars */
+    overflow: hidden; /* Hide scrollbars */
+}
+
+.navbar-default {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a {
+    color: white;
 }
 
 .home-page-section{
@@ -65,8 +76,8 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
