@@ -14,7 +14,6 @@
         <link href="styles/filieres.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="scripts/filieres.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
         <title>Filieres</title>
@@ -36,6 +35,9 @@
             </div>
         </nav>
 
+        <s:if test="success_message != null && !success_message.isEmpty()">
+            <span class="alert-success success"><s:property value="success_message"/></span>
+        </s:if>
         <div class="container">
             <div class="row ">
 
@@ -48,7 +50,7 @@
                                     <div class="panel-title font-weight-bold">Liste des filieres</div>
                                 </div>
                                 <div class="col col-xs-6 text-right">
-                                    <button class="btn btn-sm btn-primary btn-create" data-toggle="modal">Ajouter Filière</button>
+                                    <a href="addFiliereForm" class="btn btn-sm btn-primary btn-create">Ajouter Filière</a>
                                 </div>
                             </div>
                         </div>
@@ -67,8 +69,8 @@
                                     <s:iterator value="filieres">
                                         <tr>
                                             <td align="center">
-                                                <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                                <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                                <a href="updateFiliereForm?code_fil=<s:property value='code_fil'/>" class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                                <a onclick="confirmDelete('<s:property value='code_fil'/>')" class="btn btn-danger" ><em class="fa fa-trash"></em></a>
                                             </td>
                                             <td><s:property value="code_fil" /></td>
                                             <td><s:property value="nom_fil" /></td>
@@ -107,6 +109,39 @@
         <footer>
             <p>Projet JEE - DKHISSI AYOUB © 2022/2023</p>
         </footer>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this item?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
+
+    <script>
+        function confirmDelete(code_fil) {
+            if (confirm("Are you sure you want to delete this item?")) {
+                // redirect the user to another page
+                window.location.href = 'delete_filiere?code_fil=' + code_fil;
+            }
+        }
+    </script>
 
 </html>

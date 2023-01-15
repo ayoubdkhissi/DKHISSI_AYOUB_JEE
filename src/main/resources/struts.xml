@@ -11,6 +11,26 @@
             <result name="success">filieres.jsp</result>      
         </action>
         
+        <action name="addFiliereForm" class="uae.ensat.actions.FiliereAction" method="add_view">
+            <result name="success">add_filiere.jsp</result>
+        </action>
+        
+        <action name="updateFiliereForm" class="uae.ensat.actions.FiliereAction" method="update_view">
+            <result name="success">update_filiere.jsp</result>
+        </action>
+        
+        <action name="add_filiere" class="uae.ensat.actions.FiliereAction" method="add_filiere">
+            <result name="error">add_filiere.jsp</result>
+            <result name="success" type="redirect">filieres</result> 
+        </action>
+        
+        <action name="update_filiere" class="uae.ensat.actions.FiliereAction" method="update_filiere">
+            <result name="success" type="redirect">filieres</result>
+        </action>
+        
+        <action name="delete_filiere" class="uae.ensat.actions.FiliereAction" method="delete_filiere">
+            <result name="success" type="redirect">filieres</result>
+        </action>
         
     </package>
 </struts>
