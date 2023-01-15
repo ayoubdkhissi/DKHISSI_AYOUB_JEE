@@ -1,0 +1,81 @@
+/* 
+    Created on : Jan 15, 2023, 1:08:12 PM
+    Author     : Ayoub Dkhissi
+*/
+
+.container{
+    margin-top: 100px;
+    margin-left: 480px;
+}
+
+.title-update{
+    margin-left: 110px;
+}
+
+.title{
+    margin-left: 160px;
+}
+.form-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.form-control {
+    background-color: #fff;
+    color: #000;
+    border-color: #579BB1;
+}
+
+.form-control:focus {
+    border-color: #579BB1;
+    box-shadow: none;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: #579BB1;
+    color: #FFF;
+    border-color: #579BB1;
+}
+
+.btn:hover {
+    background-color: #1C82AD;
+    border-color: #1C82AD;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.navbar-default {
+    background-color: #579BB1;
+    border-color: #E1D7C6;
+}
+.navbar-default .navbar-brand {
+    color: black;
+}
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+body {
+    overflow: hidden; /* Hide scrollbars */
+    background-color: #fff;
+}
+
+.error{
+
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+    
+    border-radius: 2px;
+}

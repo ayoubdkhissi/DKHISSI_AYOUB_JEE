@@ -11,7 +11,9 @@ import uae.ensat.services.FiliereService;
  * @author Ayoub Dkhissi
  */
 public class FiliereAction extends ActionSupport {
-
+    
+    
+    // service injecté depuis fichier de configuration
     private FiliereService filiereService;
 
     // Liste de filieres affiché

@@ -27,5 +27,11 @@
     <bean id="filiereAction" class="uae.ensat.actions.FiliereAction">
         <property name="filiereService" ref="filiereService" />
     </bean>
+    
+    <bean id="eleveeAction" class="uae.ensat.actions.EleveAction">
+        <property name="eleveService" ref="eleveService" />
+        <property name="filiereService" ref="filiereService" />
+
+    </bean>
 
 </beans>

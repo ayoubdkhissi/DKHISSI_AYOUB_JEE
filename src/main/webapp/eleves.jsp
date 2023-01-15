@@ -16,7 +16,7 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-        <title>Filieres</title>
+        <title>Eleves</title>
     </head>
 
 
@@ -47,10 +47,10 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col col-xs-6 ">
-                                    <div class="panel-title font-weight-bold">Liste des filieres</div>
+                                    <div class="panel-title font-weight-bold">Liste des eleves</div>
                                 </div>
                                 <div class="col col-xs-6 text-right">
-                                    <a href="addFiliereForm" class="btn btn-sm btn-primary btn-create">Ajouter Filière</a>
+                                    <a href="addEleveForm" class="btn btn-sm btn-primary btn-create">Ajouter Eleve</a>
                                 </div>
                             </div>
                         </div>
@@ -58,23 +58,29 @@
                             <table class="table table-striped table-bordered table-list">
                                 <thead>
                                     <tr>
-                                        <th><em class="fa fa-cog"></em></th>
-                                        <th>Code Filiere</th>
-                                        <th>Designation</th>
-                                        <th class="hidden-xs">Nombre d'eleves</th>
+                                        <th style="width: 16.66%"><em class="fa fa-cog"></em></th>
+                                        <th>CNE</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Filiere</th>
+                                        <th>Moyenne</th>
                                     </tr> 
                                 </thead>
                                 <tbody>
 
-                                    <s:iterator value="filieres">
+                                    <s:iterator value="eleves">
                                         <tr>
                                             <td align="center">
-                                                <a href="updateFiliereForm?code_fil=<s:property value='code_fil'/>" class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                                <a onclick="confirmDelete('<s:property value='code_fil'/>')" class="btn btn-danger" ><em class="fa fa-trash"></em></a>
+                                                <a href="updateEleveForm?cne=<s:property value='cne'/>" class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                                <a onclick="confirmDelete('<s:property value='cne'/>')" class="btn btn-danger" ><em class="fa fa-trash"></em></a>
                                             </td>
-                                            <td><s:property value="code_fil" /></td>
-                                            <td><s:property value="nom_fil" /></td>
-                                            <td class="hidden-xs">1</td>
+                                            <td><s:property value="cne" /></td>
+                                            <td><s:property value="nom" /></td>
+                                            <td><s:property value="prenom" /></td>
+                                            <td><s:property value="ref_fil.code_fil" /></td>
+                                            <td><s:property value="moyenne" /></td>
+
+
                                         </tr>
                                     </s:iterator>
 
@@ -110,13 +116,14 @@
             <p>Projet JEE - DKHISSI AYOUB © 2022/2023</p>
         </footer>
 
+
     </body>
 
     <script>
-        function confirmDelete(code_fil) {
+        function confirmDelete(cne) {
             if (confirm("Are you sure you want to delete this item?")) {
                 // redirect the user to another page
-                window.location.href = 'delete_filiere?code_fil=' + code_fil;
+                window.location.href = 'delete_eleve?cne=' + cne;
             }
         }
     </script>

@@ -7,6 +7,7 @@
     <package name="uae.ensat.actions" extends="struts-default">
         
         
+        <!--Actions pour filiere-->
         <action name="filieres" class="uae.ensat.actions.FiliereAction" method="Lister">
             <result name="success">filieres.jsp</result>      
         </action>
@@ -30,6 +31,34 @@
         
         <action name="delete_filiere" class="uae.ensat.actions.FiliereAction" method="delete_filiere">
             <result name="success" type="redirect">filieres</result>
+        </action>
+        
+        
+        
+        <!-- Action pour eleves -->
+        <action name="eleves" class="uae.ensat.actions.EleveAction" method="Lister">
+            <result name="success">eleves.jsp</result>      
+        </action>
+        
+        <action name="addEleveForm" class="uae.ensat.actions.EleveAction" method="add_view">
+            <result name="success">add_eleve.jsp</result>
+        </action>
+        
+        <action name="updateEleveForm" class="uae.ensat.actions.EleveAction" method="update_view">
+            <result name="success">update_eleve.jsp</result>
+        </action>
+        
+        <action name="add_eleve" class="uae.ensat.actions.EleveAction" method="add_eleve">
+            <result name="error">add_eleve.jsp</result>
+            <result name="success" type="redirect">eleves</result> 
+        </action>
+        
+        <action name="update_eleve" class="uae.ensat.actions.EleveAction" method="update_eleve">
+            <result name="success" type="redirect">eleves</result>
+        </action>
+        
+        <action name="delete_eleve" class="uae.ensat.actions.EleveAction" method="delete_eleve">
+            <result name="success" type="redirect">eleves</result>
         </action>
         
     </package>
