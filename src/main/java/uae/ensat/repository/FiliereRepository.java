@@ -42,6 +42,23 @@ public class FiliereRepository {
         return filieres;
     }
     
+    public List<Filiere> getWithPagination(int pageIndex)
+    {
+        List<Filiere> filieres = new ArrayList<>();
+
+        try {
+            Query req = entityManager.createQuery(" select f from Filiere f ").setFirstResult(pageIndex*4).setMaxResults(4);
+            
+            filieres = req.getResultList();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception message dans getAll Filieres: " + ex.getMessage());
+        }
+
+        return filieres;
+    }
+    
     // Get filiere by Id
     public Filiere getById(String code_fil)
     {
@@ -96,5 +113,12 @@ public class FiliereRepository {
             ex.printStackTrace();
             System.out.println("Exception message dans delete filiere: " + ex.getMessage());
         }
+    }
+    
+    // get total count of fillieres
+    public int getTotalCountOfFiliere()
+    {
+        Query query = entityManager.createNativeQuery("select count(*) from filieres");
+        return Integer.valueOf(query.getSingleResult().toString());
     }
 }

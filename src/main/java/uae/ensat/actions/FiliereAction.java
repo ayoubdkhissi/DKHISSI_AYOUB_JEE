@@ -31,9 +31,15 @@ public class FiliereAction extends ActionSupport {
     // Message de success
     private String success_message;
     
+    // pagination
+    private int pageIndex = 1;
+    private int nbrTotalFilieres;
+    
+    
     // Methode pour lister les filieres (returns the filieres.jsp view)
     public String Lister() throws Exception {
-        this.setFilieres(filiereService.getAllFilieres());
+        this.setNbrTotalFilieres(filiereService.getTotalCountOfFiliere());
+        this.setFilieres(filiereService.getWithPagination(pageIndex-1));
         return SUCCESS;
     }
 
@@ -134,9 +140,25 @@ public class FiliereAction extends ActionSupport {
     public void setSuccess_message(String success_message) {
         this.success_message = success_message;
     }
-    
-    
 
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public int getNbrTotalFilieres() {
+        return nbrTotalFilieres;
+    }
+
+    public void setNbrTotalFilieres(int nbrTotalFilieres) {
+        this.nbrTotalFilieres = nbrTotalFilieres;
+    }
+    
+    
+    
     
     
 }

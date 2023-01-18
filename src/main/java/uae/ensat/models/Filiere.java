@@ -1,8 +1,9 @@
 package uae.ensat.models;
 
 import java.util.Collection;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,8 +24,8 @@ public class Filiere {
     @Size(max = 45)
     private String nom_fil;
     
-    @OneToMany(mappedBy = "ref_fil", fetch = FetchType.LAZY)
-    public Collection<Eleve> eleves;
+    @OneToMany(mappedBy = "ref_fil", cascade = CascadeType.REMOVE)
+    public List<Eleve> eleves;
 
     public Filiere() {}
     
@@ -57,7 +58,7 @@ public class Filiere {
         this.nom_fil = nom_fil;
     }
 
-    public void setEleves(Collection<Eleve> eleves) {
+    public void setEleves(List<Eleve> eleves) {
         this.eleves = eleves;
     }
     

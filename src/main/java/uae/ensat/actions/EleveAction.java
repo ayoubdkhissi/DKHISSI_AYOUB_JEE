@@ -84,7 +84,11 @@ public class EleveAction extends ActionSupport {
 
             return ERROR;
         }
-
+        
+        if(eleve.getRef_fil().getCode_fil().isBlank())
+        {
+            eleve.setRef_fil(null);
+        }
         // eleve does not exist add it 
         this.eleveService.addEleve(eleve);
         

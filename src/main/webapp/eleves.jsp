@@ -77,7 +77,14 @@
                                             <td><s:property value="cne" /></td>
                                             <td><s:property value="nom" /></td>
                                             <td><s:property value="prenom" /></td>
-                                            <td><s:property value="ref_fil.code_fil" /></td>
+                                            <td>
+                                                <s:if test="ref_fil != null">
+                                                    <s:property value="ref_fil.code_fil" />
+                                                </s:if>
+                                                <s:else>
+                                                    Non determiné
+                                                </s:else>
+                                            </td>
                                             <td><s:property value="moyenne" /></td>
 
 

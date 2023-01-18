@@ -20,6 +20,11 @@ public class FiliereService {
         return filiereRepository.getAll();
     }
     
+    public List<Filiere> getWithPagination(int pageIndex)
+    {
+        return filiereRepository.getWithPagination(pageIndex);
+    }
+    
     public Filiere getFiliereById(String code_fil)
     {
         return filiereRepository.getById(code_fil);
@@ -39,6 +44,12 @@ public class FiliereService {
     {
         filiereRepository.deleteById(code_fil);
     }
+    
+    public int getTotalCountOfFiliere()
+    {
+        return this.filiereRepository.getTotalCountOfFiliere();
+    }
+    
 
     public void setFiliereRepository(FiliereRepository filiereRepository) {
         this.filiereRepository = filiereRepository;
