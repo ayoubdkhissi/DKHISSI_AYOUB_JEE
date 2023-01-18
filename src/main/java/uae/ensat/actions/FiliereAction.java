@@ -2,6 +2,7 @@ package uae.ensat.actions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.HashMap;
 import java.util.List;
 import uae.ensat.models.Filiere;
 import uae.ensat.services.FiliereService;
@@ -35,11 +36,25 @@ public class FiliereAction extends ActionSupport {
     private int pageIndex = 1;
     private int nbrTotalFilieres;
     
+    // Hashmap contient le count d'etudiants dans chaque filiere
+    private HashMap<String, Integer> count;
+    
     
     // Methode pour lister les filieres (returns the filieres.jsp view)
     public String Lister() throws Exception {
+        
+        // get the total number of filieres
         this.setNbrTotalFilieres(filiereService.getTotalCountOfFiliere());
+        
+        // remplire la liste de filieres
         this.setFilieres(filiereService.getWithPagination(pageIndex-1));
+        
+        // get the count of eleves dans chauqe filiere
+        count = new HashMap();
+        for(Filiere filiere: filieres)
+        {
+            count.put(filiere.getCode_fil(), filiereService.getElevesCount(filiere.getCode_fil()));
+        }
         return SUCCESS;
     }
 
@@ -155,6 +170,14 @@ public class FiliereAction extends ActionSupport {
 
     public void setNbrTotalFilieres(int nbrTotalFilieres) {
         this.nbrTotalFilieres = nbrTotalFilieres;
+    }
+
+    public HashMap<String, Integer> getCount() {
+        return count;
+    }
+
+    public void setCount(HashMap<String, Integer> count) {
+        this.count = count;
     }
     
     

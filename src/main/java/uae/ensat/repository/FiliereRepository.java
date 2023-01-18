@@ -121,4 +121,10 @@ public class FiliereRepository {
         Query query = entityManager.createNativeQuery("select count(*) from filieres");
         return Integer.valueOf(query.getSingleResult().toString());
     }
+    
+    public int getElevesCount(String code_fil)
+    {
+        Query query = entityManager.createNativeQuery("select count(*) from eleves where ref_fil = '"+code_fil+"'");
+        return Integer.valueOf(query.getSingleResult().toString());
+    }
 }

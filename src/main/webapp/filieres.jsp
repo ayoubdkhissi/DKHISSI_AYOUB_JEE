@@ -74,7 +74,7 @@
                                             </td>
                                             <td><s:property value="code_fil" /></td>
                                             <td><s:property value="nom_fil" /></td>
-                                            <td><s:property value="eleves.size()" /></td>
+                                            <td>${count.get(code_fil)}</td>
                                         </tr>
                                     </s:iterator>
 

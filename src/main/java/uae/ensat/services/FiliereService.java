@@ -50,6 +50,11 @@ public class FiliereService {
         return this.filiereRepository.getTotalCountOfFiliere();
     }
     
+    public int getElevesCount(String code_fil)
+    {
+       return this.filiereRepository.getElevesCount(code_fil);
+    }
+    
 
     public void setFiliereRepository(FiliereRepository filiereRepository) {
         this.filiereRepository = filiereRepository;
