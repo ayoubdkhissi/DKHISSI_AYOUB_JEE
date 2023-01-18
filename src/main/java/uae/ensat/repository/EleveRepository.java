@@ -44,6 +44,22 @@ public class EleveRepository {
         return eleves;
     }
 
+    // get une list d'etudiants paginée
+    public List<Eleve> getWithPagination(int pageIndex) {
+        List<Eleve> eleves = new ArrayList<>();
+
+        try {
+            Query req = entityManager.createQuery(" select e from Eleve e").setFirstResult(pageIndex*4).setMaxResults(4);
+            eleves = req.getResultList();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception message dans getAll Eleves: " + ex.getMessage());
+        }
+
+        return eleves;
+    }
+
     // Get eleve by Id
     public Eleve getById(String cne) {
         try {
@@ -92,5 +108,12 @@ public class EleveRepository {
             ex.printStackTrace();
             System.out.println("Exception message dans delete eleve: " + ex.getMessage());
         }
+    }
+    
+    
+    public int getTotalNumberEleves()
+    {
+        Query query = entityManager.createNativeQuery("select count(*) from eleves");
+        return Integer.valueOf(query.getSingleResult().toString());
     }
 }

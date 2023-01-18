@@ -15,41 +15,52 @@ import uae.ensat.services.FiliereService;
  * @author Ayoub Dkhissi
  */
 public class EleveAction extends ActionSupport {
-    
+
     // service injecté depuis fichier de configuration
     private EleveService eleveService;
     private FiliereService filiereService;
-    
+
     // List des eleves affiché
     private List<Eleve> eleves;
-    
+
     // List des filieres utilisé lors de l'ajout et la mise à jour d'eleve
     private List<Filiere> filieres;
-    
+
     // Object Eleve utilisé pour l'ajout et mise à jour
     private Eleve eleve;
-    
+
     // code utilisé pour delete et mise à jour
     private String cne;
-    
+
     // Message d'erreur
     private String error_message;
-    
+
     // Message de success
     private String success_message;
-    
-     // Methode pour lister les eleves (returns the eleves.jsp view)
+
+    // pagination
+    private int pageIndex = 1;
+    private int nbrTotalEleves;
+
+    // Methode pour lister les eleves (returns the eleves.jsp view)
     public String Lister() throws Exception {
-        this.setEleves(eleveService.getAllEleve());
+        
+        // get total number of students
+        this.setNbrTotalEleves(eleveService.getTotalNumberEleves());
+        
+        // remplire la liste des eleves
+        this.setEleves(eleveService.getWithPagination(pageIndex-1));
+        
+        
         return SUCCESS;
     }
 
     // Methode pour afficher la vue pour ajouter eleve
     public String add_view() throws Exception {
-        
+
         // we need the list of all filieres in the add eleve view
         this.setFilieres(filiereService.getAllFilieres());
-        
+
         return SUCCESS;
     }
 
@@ -66,7 +77,7 @@ public class EleveAction extends ActionSupport {
 
         // set list of filieres
         this.setFilieres(filiereService.getAllFilieres());
-        
+
         return SUCCESS;
     }
 
@@ -74,38 +85,34 @@ public class EleveAction extends ActionSupport {
     public String add_eleve() throws Exception {
         // check if eleve already exists
         Eleve new_eleve = eleveService.getEleveById(eleve.getCne());
-        
+
         if (new_eleve != null) {
             // eleve already exists : return the add page with error message
-            error_message = "L'eleve " + eleve.getCne()+ " Existe déja";
-            
+            error_message = "L'eleve " + eleve.getCne() + " Existe déja";
+
             // charger la liste des filieres
             this.setFilieres(filiereService.getAllFilieres());
 
             return ERROR;
         }
-        
-        if(eleve.getRef_fil().getCode_fil().isBlank())
-        {
+
+        if (eleve.getRef_fil().getCode_fil().isBlank()) {
             eleve.setRef_fil(null);
         }
         // eleve does not exist add it 
         this.eleveService.addEleve(eleve);
-        
+
         return SUCCESS;
     }
-    
-    
+
     // Method pour update un eleve
-    public String update_eleve() throws Exception
-    {
+    public String update_eleve() throws Exception {
         eleveService.updataEleve(eleve);
         return SUCCESS;
     }
-    
+
     // Method pour supprimer un eleve
-    public String delete_eleve() throws Exception
-    {
+    public String delete_eleve() throws Exception {
         eleveService.deleteEleveById(cne);
         return SUCCESS;
     }
@@ -173,8 +180,23 @@ public class EleveAction extends ActionSupport {
     public void setFiliereService(FiliereService filiereService) {
         this.filiereService = filiereService;
     }
+
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public int getNbrTotalEleves() {
+        return nbrTotalEleves;
+    }
+
+    public void setNbrTotalEleves(int nbrTotalEleves) {
+        this.nbrTotalEleves = nbrTotalEleves;
+    }
     
     
-    
-    
+
 }

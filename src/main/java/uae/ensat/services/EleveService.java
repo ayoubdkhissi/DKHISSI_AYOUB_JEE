@@ -14,36 +14,37 @@ import uae.ensat.repository.EleveRepository;
  * @author Ayoub Dkhissi
  */
 public class EleveService {
-    
+
     private EleveRepository eleveRepository;
 
-    
-     public List<Eleve> getAllEleve() 
-    {
+    public List<Eleve> getAllEleve() {
         return eleveRepository.getAll();
     }
-    
-    public Eleve getEleveById(String cne)
-    {
+
+    public List<Eleve> getWithPagination(int pageIndex) {
+        return eleveRepository.getWithPagination(pageIndex);
+    }
+
+    public Eleve getEleveById(String cne) {
         return eleveRepository.getById(cne);
     }
-    
-    public void addEleve(Eleve eleve)
-    {
+
+    public void addEleve(Eleve eleve) {
         eleveRepository.add(eleve);
     }
-    
-    public void updataEleve(Eleve eleve)
-    {
+
+    public void updataEleve(Eleve eleve) {
         eleveRepository.update(eleve);
     }
-    
-    public void deleteEleveById(String cne)
-    {
+
+    public void deleteEleveById(String cne) {
         eleveRepository.deleteById(cne);
     }
-    
-    
+
+    public int getTotalNumberEleves() {
+        return eleveRepository.getTotalNumberEleves();
+    }
+
     public EleveRepository getEleveRepository() {
         return eleveRepository;
     }

@@ -101,15 +101,14 @@
                                 </div>
                                 <div class="col col-xs-8">
                                     <ul class="pagination hidden-xs pull-right">
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                    </ul>
-                                    <ul class="pagination visible-xs pull-right">
-                                        <li><a href="#">«</a></li>
-                                        <li><a href="#">»</a></li>
+                                        <c:forEach var="i" begin="1" end="${nbrTotalEleves/4 + (nbrTotalEleves%4!=0?1:0) }" step="1">
+                                            <c:if test="${i eq pageIndex}">
+                                                <li class="active"><a href="?pageIndex=${i}">${i}</a></li>
+                                            </c:if>
+                                            <c:if test="${i ne pageIndex}">
+                                                <li class=""><a href="?pageIndex=${i}">${i}</a></li>
+                                            </c:if>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </div>
