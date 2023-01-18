@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,9 +64,16 @@
                         <div class="form-group">
                             <label for="filiere">Filiere</label>
                             <select class="form-control" id="filiere" placeholder="Filiere" name="eleve.ref_fil.code_fil">
+
                                 <s:iterator value="filieres">
-                                    <option value="<s:property value="code_fil"/>"><s:property value="code_fil"/></option>
+                                    <c:if test="${code_fil.equalsIgnoreCase(eleve.ref_fil.code_fil)}">
+                                        <option selected value="<s:property value="code_fil"/>"><s:property value="code_fil"/></option>
+                                    </c:if>
+                                    <c:if test="${!code_fil.equalsIgnoreCase(eleve.ref_fil.nom_fil)}">
+                                        <option value="<s:property value="code_fil"/>"><s:property value="code_fil"/></option>
+                                    </c:if>
                                 </s:iterator>
+                                <option value="" >Non Determiné</option>
                             </select>
                         </div>
 
@@ -82,4 +91,10 @@
             <p>Projet JEE - DKHISSI AYOUB © 2022/2023</p>
         </footer>
     </body>
+
+
+
+    <script>
+
+    </script>
 </html>

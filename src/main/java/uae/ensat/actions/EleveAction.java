@@ -107,6 +107,8 @@ public class EleveAction extends ActionSupport {
 
     // Method pour update un eleve
     public String update_eleve() throws Exception {
+        if(eleve.getRef_fil().getCode_fil().isBlank())
+            eleve.setRef_fil(null);
         eleveService.updataEleve(eleve);
         return SUCCESS;
     }

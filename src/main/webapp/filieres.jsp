@@ -30,7 +30,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/DKHISSI_AYOUB_JEE">Home</a></li>
                     <li><a href="eleves">Eleves</a></li>
-                    <li><a href="filieres">Filieres</a></li>
+                    <li class="nav-link active"><a href="filieres">Filieres</a></li>
                 </ul>
             </div>
         </nav>

@@ -28,9 +28,9 @@
                     <a class="navbar-brand" href="/DKHISSI_AYOUB_JEE">JEE</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/DKHISSI_AYOUB_JEE">Home</a></li>
-                    <li><a href="eleves">Eleves</a></li>
-                    <li><a href="filieres">Filieres</a></li>
+                    <li class="nav-link"><a href="/DKHISSI_AYOUB_JEE">Home</a></li>
+                    <li class="nav-link active"><a href="eleves">Eleves</a></li>
+                    <li class="nav-link"><a href="filieres">Filieres</a></li>
                 </ul>
             </div>
         </nav>
@@ -97,7 +97,8 @@
                         </div>
                         <div class="panel-footer">
                             <div class="row">
-                                <div class="col col-xs-4">Page 1 of 5
+                                <div class="col col-xs-4">
+                                    Nombre total d'eleves: ${nbrTotalEleves}
                                 </div>
                                 <div class="col col-xs-8">
                                     <ul class="pagination hidden-xs pull-right">
