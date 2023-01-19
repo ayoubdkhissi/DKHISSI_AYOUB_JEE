@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label for="filiere">Filiere</label>
                             <select class="form-control" id="filiere" placeholder="Filiere" name="eleve.ref_fil.code_fil">
-
+                                <option value="" >Non Determiné</option>
                                 <s:iterator value="filieres">
                                     <c:if test="${code_fil.equalsIgnoreCase(eleve.ref_fil.code_fil)}">
                                         <option selected value="<s:property value="code_fil"/>"><s:property value="code_fil"/></option>
@@ -73,7 +73,7 @@
                                         <option value="<s:property value="code_fil"/>"><s:property value="code_fil"/></option>
                                     </c:if>
                                 </s:iterator>
-                                <option value="" >Non Determiné</option>
+
                             </select>
                         </div>
 

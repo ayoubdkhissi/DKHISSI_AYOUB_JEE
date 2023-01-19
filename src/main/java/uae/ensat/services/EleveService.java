@@ -44,6 +44,11 @@ public class EleveService {
     public int getTotalNumberEleves() {
         return eleveRepository.getTotalNumberEleves();
     }
+    
+    public List<Eleve> getElevesOfFiliere(int pageIndex, Filiere filiere)
+    {
+        return eleveRepository.getElevesOfFiliere(pageIndex, filiere);
+    }
 
     public EleveRepository getEleveRepository() {
         return eleveRepository;

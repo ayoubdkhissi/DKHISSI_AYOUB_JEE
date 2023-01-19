@@ -128,4 +128,12 @@ public class FiliereRepository {
         Query query = entityManager.createNativeQuery("select count(*) from eleves where ref_fil = '"+code_fil+"'");
         return Integer.valueOf(query.getSingleResult().toString());
     }
+    
+    
+    // get number of eleves qui ont pas un filiere
+    public int getCountElevesSansFiliere()
+    {
+        Query query = entityManager.createNativeQuery("select count(*) from eleves where ref_fil is null");
+        return Integer.valueOf(query.getSingleResult().toString());
+    }
 }

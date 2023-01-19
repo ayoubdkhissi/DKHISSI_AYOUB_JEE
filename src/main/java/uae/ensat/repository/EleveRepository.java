@@ -11,6 +11,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import uae.ensat.models.Eleve;
 import uae.ensat.models.Filiere;
 
@@ -49,7 +52,7 @@ public class EleveRepository {
         List<Eleve> eleves = new ArrayList<>();
 
         try {
-            Query req = entityManager.createQuery(" select e from Eleve e").setFirstResult(pageIndex*4).setMaxResults(4);
+            Query req = entityManager.createQuery(" select e from Eleve e").setFirstResult(pageIndex * 4).setMaxResults(4);
             eleves = req.getResultList();
 
         } catch (Exception ex) {
@@ -109,11 +112,32 @@ public class EleveRepository {
             System.out.println("Exception message dans delete eleve: " + ex.getMessage());
         }
     }
-    
-    
-    public int getTotalNumberEleves()
-    {
+
+    // get total number of eleves
+    public int getTotalNumberEleves() {
         Query query = entityManager.createNativeQuery("select count(*) from eleves");
         return Integer.valueOf(query.getSingleResult().toString());
+    }
+
+    // get all eleves of a filiere
+    public List<Eleve> getElevesOfFiliere(int pageIndex, Filiere filiere) {
+        List<Eleve> eleves = new ArrayList<>();
+
+        try {
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Eleve> cq = cb.createQuery(Eleve.class);
+            Root<Eleve> root = cq.from(Eleve.class);
+
+            cq.select(root);
+            cq.where(cb.equal(root.get("ref_fil"), filiere));
+
+            return entityManager.createQuery(cq).getResultList();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception message dans get eleves of filieres: " + ex.getMessage());
+        }
+
+        return eleves;
     }
 }

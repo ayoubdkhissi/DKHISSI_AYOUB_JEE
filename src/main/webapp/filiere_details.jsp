@@ -16,7 +16,7 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-        <title>Filieres</title>
+        <title>Eleves</title>
     </head>
 
 
@@ -28,9 +28,9 @@
                     <a class="navbar-brand" href="/DKHISSI_AYOUB_JEE">JEE</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/DKHISSI_AYOUB_JEE">Home</a></li>
-                    <li><a href="eleves">Eleves</a></li>
-                    <li class="nav-link active"><a href="filieres">Filieres</a></li>
+                    <li class="nav-link"><a href="/DKHISSI_AYOUB_JEE">Home</a></li>
+                    <li class="nav-link active"><a href="eleves">Eleves</a></li>
+                    <li class="nav-link"><a href="filieres">Filieres</a></li>
                 </ul>
             </div>
         </nav>
@@ -47,10 +47,13 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col col-xs-6 ">
-                                    <div class="panel-title font-weight-bold">Liste des filieres</div>
+                                    <div class="panel-title font-weight-bold">
+                                        Liste des eleves du filiere : 
+                                        <s:property value="code_fil" />
+                                    </div>
                                 </div>
                                 <div class="col col-xs-6 text-right">
-                                    <a href="addFiliereForm" class="btn btn-sm btn-primary btn-create">Ajouter Filière</a>
+                                    <a href="addEleveForm" class="btn btn-sm btn-primary btn-create">Ajouter Eleve</a>
                                 </div>
                             </div>
                         </div>
@@ -58,30 +61,36 @@
                             <table class="table table-striped table-bordered table-list">
                                 <thead>
                                     <tr>
-                                        <th><em class="fa fa-cog"></em></th>
-                                        <th>Code Filiere</th>
-                                        <th>Designation</th>
-                                        <th class="hidden-xs">Nombre d'eleves</th>
+                                        <th style="width: 16.66%"><em class="fa fa-cog"></em></th>
+                                        <th>CNE</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Filiere</th>
+                                        <th>Moyenne</th>
                                     </tr> 
                                 </thead>
                                 <tbody>
-                                    <s:if test="nbrNonDetermine != 0 && pageIndex == 1">
-                                        <tr>
-                                            <td align="center"></td>
-                                            <td>-</td>
-                                            <td>Non Déterminé</td>
-                                            <td><s:property value="nbrNonDetermine"/></td>
-                                        </tr>
-                                    </s:if>
-                                    <s:iterator value="filieres">
+
+                                    <s:iterator value="eleves">
                                         <tr>
                                             <td align="center">
-                                                <a href="updateFiliereForm?code_fil=<s:property value='code_fil'/>" class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                                <a onclick="confirmDelete('<s:property value='code_fil'/>')" class="btn btn-danger" ><em class="fa fa-trash"></em></a>
+                                                <a href="updateEleveForm?cne=<s:property value='cne'/>" class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                                <a onclick="confirmDelete('<s:property value='cne'/>')" class="btn btn-danger" ><em class="fa fa-trash"></em></a>
                                             </td>
-                                            <td><s:property value="code_fil" /></td>
-                                            <td><s:property value="nom_fil" /></td>
-                                            <td>${count.get(code_fil)}</td>
+                                            <td><s:property value="cne" /></td>
+                                            <td><s:property value="nom" /></td>
+                                            <td><s:property value="prenom" /></td>
+                                            <td>
+                                                <s:if test="ref_fil != null">
+                                                    <s:property value="ref_fil.code_fil" />
+                                                </s:if>
+                                                <s:else>
+                                                    Non determiné
+                                                </s:else>
+                                            </td>
+                                            <td><s:property value="moyenne" /></td>
+
+
                                         </tr>
                                     </s:iterator>
 
@@ -91,20 +100,19 @@
                         </div>
                         <div class="panel-footer">
                             <div class="row">
-                                <div class="col col-xs-4">Nombre Total de filieres: <s:property value="nbrTotalFilieres" />
+                                <div class="col col-xs-4">
+                                    Nombre total d'eleves: ${nbrTotalEleves}
                                 </div>
                                 <div class="col col-xs-8">
                                     <ul class="pagination hidden-xs pull-right">
-
-
-                                        <c:forEach var="i" begin="1" end="${nbrTotalFilieres/4 + (nbrTotalFilieres%4!=0?1:0) }" step="1">
+                                        <c:forEach var="i" begin="1" end="${nbrTotalEleves/4 + (nbrTotalEleves%4!=0?1:0) }" step="1">
                                             <c:if test="${i eq pageIndex}">
                                                 <li class="active"><a href="?pageIndex=${i}">${i}</a></li>
-                                                </c:if>
-                                                <c:if test="${i ne pageIndex}">
+                                            </c:if>
+                                            <c:if test="${i ne pageIndex}">
                                                 <li class=""><a href="?pageIndex=${i}">${i}</a></li>
-                                                </c:if>
-                                            </c:forEach>
+                                            </c:if>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </div>
@@ -118,13 +126,14 @@
             <p>Projet JEE - DKHISSI AYOUB © 2022/2023</p>
         </footer>
 
+
     </body>
 
     <script>
-        function confirmDelete(code_fil) {
+        function confirmDelete(cne) {
             if (confirm("Are you sure you want to delete this item?")) {
                 // redirect the user to another page
-                window.location.href = 'delete_filiere?code_fil=' + code_fil;
+                window.location.href = 'delete_eleve?cne=' + cne;
             }
         }
     </script>
