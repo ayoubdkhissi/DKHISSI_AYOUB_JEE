@@ -13,7 +13,7 @@ import uae.ensat.models.Filiere;
  *
  * @author Ayoub Dkhissi
  */
-public class FiliereRepository {
+public class FiliereRepository implements IFiliereRepository{
 
     EntityManager entityManager;
     EntityTransaction entityTransaction;
@@ -26,6 +26,7 @@ public class FiliereRepository {
     
     
     // Obtenir la list de toutes les filieres
+    @Override
     public List<Filiere> getAll() 
     {
         List<Filiere> filieres = new ArrayList<>();
@@ -42,6 +43,7 @@ public class FiliereRepository {
         return filieres;
     }
     
+    @Override
     public List<Filiere> getWithPagination(int pageIndex)
     {
         List<Filiere> filieres = new ArrayList<>();
@@ -60,6 +62,7 @@ public class FiliereRepository {
     }
     
     // Get filiere by Id
+    @Override
     public Filiere getById(String code_fil)
     {
         try{
@@ -74,6 +77,7 @@ public class FiliereRepository {
     
     
     // Add new filiere
+    @Override
     public void add(Filiere filiere)
     {
         try{
@@ -88,6 +92,7 @@ public class FiliereRepository {
     
     
     // update filiere
+    @Override
     public void update(Filiere filiere)
     {
         try{
@@ -101,6 +106,7 @@ public class FiliereRepository {
     }
     
     // Delete filiere by id
+    @Override
     public void deleteById(String code_fil)
     {
         try{
@@ -116,6 +122,7 @@ public class FiliereRepository {
     }
     
     // get total count of fillieres
+    @Override
     public int getTotalCountOfFiliere()
     {
         Query query = entityManager.createNativeQuery("select count(*) from filieres");
@@ -123,6 +130,7 @@ public class FiliereRepository {
     }
     
     // get count of eleves in filiere
+    @Override
     public int getElevesCount(String code_fil)
     {
         Query query = entityManager.createNativeQuery("select count(*) from eleves where ref_fil = '"+code_fil+"'");
@@ -131,6 +139,7 @@ public class FiliereRepository {
     
     
     // get number of eleves qui ont pas un filiere
+    @Override
     public int getCountElevesSansFiliere()
     {
         Query query = entityManager.createNativeQuery("select count(*) from eleves where ref_fil is null");

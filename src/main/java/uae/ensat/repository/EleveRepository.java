@@ -21,7 +21,7 @@ import uae.ensat.models.Filiere;
  *
  * @author Ayoub Dkhissi
  */
-public class EleveRepository {
+public class EleveRepository implements IEleveRepository{
 
     EntityManager entityManager;
     EntityTransaction entityTransaction;
@@ -32,6 +32,7 @@ public class EleveRepository {
     }
 
     // Obtenir la list de toutes les etudiants
+    @Override
     public List<Eleve> getAll() {
         List<Eleve> eleves = new ArrayList<>();
 
@@ -48,6 +49,7 @@ public class EleveRepository {
     }
 
     // get une list d'etudiants paginée
+    @Override
     public List<Eleve> getWithPagination(int pageIndex) {
         List<Eleve> eleves = new ArrayList<>();
 
@@ -64,6 +66,7 @@ public class EleveRepository {
     }
 
     // Get eleve by Id
+    @Override
     public Eleve getById(String cne) {
         try {
             Eleve eleve = (Eleve) entityManager.find(Eleve.class, cne);
@@ -76,6 +79,7 @@ public class EleveRepository {
     }
 
     // Add new eleve
+    @Override
     public void add(Eleve eleve) {
         try {
             entityTransaction.begin();
@@ -88,6 +92,7 @@ public class EleveRepository {
     }
 
     // update eleve
+    @Override
     public void update(Eleve eleve) {
         try {
             entityTransaction.begin();
@@ -100,6 +105,7 @@ public class EleveRepository {
     }
 
     // Delete eleve by id
+    @Override
     public void deleteById(String cne) {
         try {
             Eleve eleve = this.getById(cne);
@@ -114,12 +120,14 @@ public class EleveRepository {
     }
 
     // get total number of eleves
+    @Override
     public int getTotalNumberEleves() {
         Query query = entityManager.createNativeQuery("select count(*) from eleves");
         return Integer.valueOf(query.getSingleResult().toString());
     }
 
     // get all eleves of a filiere
+    @Override
     public List<Eleve> getElevesOfFiliere(int pageIndex, Filiere filiere) {
         List<Eleve> eleves = new ArrayList<>();
 

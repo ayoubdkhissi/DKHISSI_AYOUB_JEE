@@ -8,6 +8,8 @@ import uae.ensat.models.Eleve;
 import uae.ensat.models.Filiere;
 import uae.ensat.services.EleveService;
 import uae.ensat.services.FiliereService;
+import uae.ensat.services.IEleveService;
+import uae.ensat.services.IFiliereService;
 
 /**
  *
@@ -16,8 +18,8 @@ import uae.ensat.services.FiliereService;
 public class FiliereAction extends ActionSupport {
 
     // service injecté depuis fichier de configuration
-    private FiliereService filiereService;
-    private EleveService eleveService;
+    private IFiliereService filiereService;
+    private IEleveService eleveService;
 
     // Liste de filieres affiché
     private List<Filiere> filieres;
@@ -146,7 +148,7 @@ public class FiliereAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public void setFiliereService(FiliereService filiereService) {
+    public void setFiliereService(IFiliereService filiereService) {
         this.filiereService = filiereService;
     }
 
@@ -154,7 +156,7 @@ public class FiliereAction extends ActionSupport {
         this.filieres = filieres;
     }
 
-    public FiliereService getFiliereService() {
+    public IFiliereService getFiliereService() {
         return filiereService;
     }
 
@@ -226,11 +228,11 @@ public class FiliereAction extends ActionSupport {
         this.nbrNonDetermine = nbrNonDetermine;
     }
 
-    public EleveService getEleveService() {
+    public IEleveService getEleveService() {
         return eleveService;
     }
 
-    public void setEleveService(EleveService eleveService) {
+    public void setEleveService(IEleveService eleveService) {
         this.eleveService = eleveService;
     }
 
