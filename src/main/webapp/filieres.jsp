@@ -79,7 +79,11 @@
                                                 <a href="updateFiliereForm?code_fil=<s:property value='code_fil'/>" class="btn btn-default"><em class="fa fa-pencil"></em></a>
                                                 <a onclick="confirmDelete('<s:property value='code_fil'/>')" class="btn btn-danger" ><em class="fa fa-trash"></em></a>
                                             </td>
-                                            <td><s:property value="code_fil" /></td>
+                                            <td>
+                                                <a href="elevesFil?code_fil=${code_fil}">
+                                                    <s:property value="code_fil" />
+                                                </a>
+                                            </td>
                                             <td><s:property value="nom_fil" /></td>
                                             <td>${count.get(code_fil)}</td>
                                         </tr>

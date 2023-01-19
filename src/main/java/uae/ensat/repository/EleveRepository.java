@@ -131,8 +131,15 @@ public class EleveRepository {
             cq.select(root);
             cq.where(cb.equal(root.get("ref_fil"), filiere));
 
-            return entityManager.createQuery(cq).getResultList();
-
+            // if pageIndex == -1 don't paginate the result, return all
+            if (pageIndex == -1) {
+                return entityManager.createQuery(cq).getResultList();
+            }
+            // else return the list paginated
+            return entityManager.createQuery(cq)
+                    .setFirstResult(pageIndex * 4)
+                    .setMaxResults(4)
+                    .getResultList();
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception message dans get eleves of filieres: " + ex.getMessage());

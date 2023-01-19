@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
         <title>Home Page </title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">

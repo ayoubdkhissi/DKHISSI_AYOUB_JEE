@@ -107,10 +107,10 @@
                                     <ul class="pagination hidden-xs pull-right">
                                         <c:forEach var="i" begin="1" end="${nbrTotalEleves/4 + (nbrTotalEleves%4!=0?1:0) }" step="1">
                                             <c:if test="${i eq pageIndex}">
-                                                <li class="active"><a href="?pageIndex=${i}">${i}</a></li>
+                                                <li class="active"><a href="?code_fil=GINF3&pageIndex=${i}">${i}</a></li>
                                             </c:if>
                                             <c:if test="${i ne pageIndex}">
-                                                <li class=""><a href="?pageIndex=${i}">${i}</a></li>
+                                                <li class=""><a href="?code_fil=GINF3&pageIndex=${i}">${i}</a></li>
                                             </c:if>
                                         </c:forEach>
                                     </ul>

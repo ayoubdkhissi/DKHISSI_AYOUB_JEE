@@ -62,7 +62,9 @@
         </action>
         
         <action name="elevesFil" class="uae.ensat.actions.FiliereAction" method="Lister_eleves_filiere">
-            <result name="success">filiere_details.jsp</result>      
+            <result name="success">filiere_details.jsp</result>    
+            <result name="error" type="redirect">eleves</result>      
+  
         </action>
         
     </package>

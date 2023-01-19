@@ -37,15 +37,16 @@ public class FiliereAction extends ActionSupport {
     // pagination
     private int pageIndex = 1;
     private int nbrTotalFilieres;
+    private int nbrTotalEleves;
 
     // Hashmap contient le count d'etudiants dans chaque filiere
     private HashMap<String, Integer> count;
 
     // Nbr d'étudiants qui ont pas de filiere
     private int nbrNonDetermine = 0;
-    
+
     // liste des eleves utilisé pour afficher la liste des eleves d'une filiere
-    private List<Eleve> eleves; 
+    private List<Eleve> eleves;
 
     // Methode pour lister les filieres (returns the filieres.jsp view)
     public String Lister() throws Exception {
@@ -67,18 +68,23 @@ public class FiliereAction extends ActionSupport {
 
         return SUCCESS;
     }
-    
+
     // Methode pour lister la list des eleves d'une filiere
-    public String Lister_eleves_filiere() throws Exception
-    {
-        if(code_fil != null && !code_fil.isBlank())
-        {
+    public String Lister_eleves_filiere() throws Exception {
+        if (code_fil != null && !code_fil.isBlank()) {
+            nbrTotalEleves = filiereService.getElevesCount(code_fil);
             filiere = filiereService.getFiliereById(code_fil);
-            eleves = eleveService.getElevesOfFiliere(pageIndex, filiere);
+            eleves = eleveService.getElevesOfFiliere(pageIndex-1, filiere);
             return SUCCESS;
         }
-        
-        return Lister();
+
+        if (code_fil == "nonDeterm") {
+            nbrTotalEleves = filiereService.getElevesCount(code_fil);
+            eleves = eleveService.getElevesOfFiliere(pageIndex-1, null);
+            return SUCCESS;
+        }
+
+        return ERROR;
     }
 
     // Methode pour afficher la vue pour ajouter filiere
@@ -124,6 +130,18 @@ public class FiliereAction extends ActionSupport {
 
     // Method pour supprimer une filiere
     public String delete_filiere() throws Exception {
+        
+        // we need to set ref_fil to null in all eleves that are in this filiere
+        filiere = filiereService.getFiliereById(code_fil);
+        
+        eleves = eleveService.getElevesOfFiliere(-1, filiere);
+        
+        for(Eleve eleve : eleves)
+        {
+            eleve.setRef_fil(null);
+            eleveService.updataEleve(eleve);
+        }
+        
         filiereService.deleteFiliereById(code_fil);
         return SUCCESS;
     }
@@ -224,5 +242,12 @@ public class FiliereAction extends ActionSupport {
         this.eleves = eleves;
     }
 
-    
+    public int getNbrTotalEleves() {
+        return nbrTotalEleves;
+    }
+
+    public void setNbrTotalEleves(int nbrTotalEleves) {
+        this.nbrTotalEleves = nbrTotalEleves;
+    }
+
 }
