@@ -9,7 +9,7 @@ import uae.ensat.models.Filiere;
 
 /**
  *
- * @author Agent-47
+ * @author Ayoub Dkhissi
  */
 public interface IFiliereRepository {
 

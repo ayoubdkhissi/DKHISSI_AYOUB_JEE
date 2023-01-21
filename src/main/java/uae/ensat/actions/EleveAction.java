@@ -200,7 +200,5 @@ public class EleveAction extends ActionSupport {
     public void setNbrTotalEleves(int nbrTotalEleves) {
         this.nbrTotalEleves = nbrTotalEleves;
     }
-    
-    
 
 }

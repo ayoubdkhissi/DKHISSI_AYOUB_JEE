@@ -49,7 +49,9 @@ public class FiliereRepository implements IFiliereRepository{
         List<Filiere> filieres = new ArrayList<>();
 
         try {
-            Query req = entityManager.createQuery(" select f from Filiere f ").setFirstResult(pageIndex*4).setMaxResults(4);
+            Query req = entityManager.createQuery(" select f from Filiere f ")
+                    .setFirstResult(pageIndex*4)
+                    .setMaxResults(4);
             
             filieres = req.getResultList();
 
