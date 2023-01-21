@@ -23,7 +23,6 @@
 ## Usage
 
 Clone the repository, then configure the database in the persistance.xml file, build the project with depenedencies(maven), run the projet using preferably a TomCat server 9.x
-```
 
 ## Author
 
@@ -38,3 +37,5 @@ Clone the repository, then configure the database in the persistance.xml file, b
 
 Give a ⭐️ if this project helped you!
 
+## Screen shots
+- Home page:
